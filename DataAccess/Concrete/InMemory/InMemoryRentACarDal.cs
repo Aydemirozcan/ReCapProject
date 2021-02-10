@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Linq.Expressions;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -53,6 +54,11 @@ namespace DataAccess.Concrete.InMemory
         public List<Car> GetById(string categoryId)
         {
             return _cars.Where(c => c.CategoryId == categoryId).ToList();
+        }
+
+        public List<RentACarDetails> GetRentACarDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)

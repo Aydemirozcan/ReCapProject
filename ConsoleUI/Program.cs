@@ -20,8 +20,17 @@ namespace ConsoleUI
             car1.DailyPrice = 10000;
             CarManager carManager1 = new CarManager(new EfCarDal());
             carManager1.Add(car1);
+
+
+            CarManager carManager2 = new CarManager(new EfCarDal());
+
+            foreach (var car in carManager.GetRentACarDetails())
+            {
+                Console.WriteLine(car.Id + "/" +car.ColorName + "/" + car.BrandName+ "/" + car.DailyPrice  );
+            }
+
         }
-        
+
 
     }
 }
