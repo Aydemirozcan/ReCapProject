@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,40 +20,49 @@ namespace Business.Concrete
             _rentACarDal = rentACarDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            if (car.Description.Length >2 && car.DailyPrice > 8000)
+            if (car.Description.Length < 2)
+            {
+                return new ErrorResult(Messages.CarDescriptionInvalid);
+            }
+
+            else if (car.Description.Length >2 && car.DailyPrice > 8000)
             {
                 _rentACarDal.Add(car);
-                Console.WriteLine("Added");
             }
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _rentACarDal.Delete(car);
-            Console.WriteLine("Deleted");
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _rentACarDal.GetAll();
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<Car>>(_rentACarDal.GetAll(),Messages.CarsListed);
         }
 
-        public Car GetById(int carId)
+        public IDataResult<Car> GetById(int carId)
         {
-            return _rentACarDal.Get(p => p.Id == carId);
+            return new SuccessDataResult<Car>(_rentACarDal.Get(p => p.Id == carId));
         }
 
-        public List<RentACarDetails> GetRentACarDetails()
+        public IDataResult<List<RentACarDetails>> GetRentACarDetails()
         {
-           return _rentACarDal.GetRentACarDetails();
+           return new SuccessDataResult<List<RentACarDetails>>(_rentACarDal.GetRentACarDetails());
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _rentACarDal.Update(car);
-            Console.WriteLine("Updated");
+            return new SuccessResult(Messages.CarUpdated);
         }
     }
 }

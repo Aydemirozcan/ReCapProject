@@ -10,11 +10,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.Id);
-            }
+            //CarManager carManager = new CarManager(new EfCarDal());
+            //foreach (var car in carManager.GetAll())
+            //{
+            //    Console.WriteLine(car.Id);
+            //}
+
             Car car1 = new Car();
             car1.Description = "Good";
             car1.DailyPrice = 10000;
@@ -22,13 +23,33 @@ namespace ConsoleUI
             carManager1.Add(car1);
 
 
+            //CarManager carManager2 = new CarManager(new EfCarDal());
+
+            //foreach (var car in carManager.GetRentACarDetails())
+            //{
+            //    Console.WriteLine(car.Id + "/" + car.ColorName + "/" + car.BrandName + "/" + car.DailyPrice);
+            //}
+
+
+
             CarManager carManager2 = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetRentACarDetails())
+            var result = carManager2.GetRentACarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine(car.Id + "/" +car.ColorName + "/" + car.BrandName+ "/" + car.DailyPrice  );
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.Id + "/" + car.ColorName + "/" + car.BrandName + "/" + car.DailyPrice);
+                }
             }
-
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+           
+        
+        
+        
         }
 
 
