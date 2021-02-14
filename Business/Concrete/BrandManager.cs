@@ -11,38 +11,38 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-        IBrandDal _ıBrandDal;
+        IBrandDal _iBrandDal;
 
-        public BrandManager(IBrandDal ıBrandDal)
+        public BrandManager(IBrandDal iBrandDal)
         {
-            _ıBrandDal = ıBrandDal;
+            _iBrandDal = iBrandDal;
         }
 
         public IResult Add(Brand brand)
         {
-            _ıBrandDal.Add(brand);
+            _iBrandDal.Add(brand);
             return new SuccessResult(Messages.BrandAdded);
         }
 
         public IResult Delete(Brand brand)
         {
-            _ıBrandDal.Delete(brand);
+            _iBrandDal.Delete(brand);
             return new SuccessResult(Messages.BrandDeleted);
         }
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_ıBrandDal.GetAll());
+            return new SuccessDataResult<List<Brand>>(_iBrandDal.GetAll());
         }
 
         public IDataResult<Brand> GetById(int brandId)
         {
-            return new SuccessDataResult<Brand>(_ıBrandDal.Get(p => p.BrandId == brandId));
+            return new SuccessDataResult<Brand>(_iBrandDal.Get(p => p.BrandId == brandId));
         }
 
         public IResult Update(Brand brand)
         {
-            _ıBrandDal.Update(brand);
+            _iBrandDal.Update(brand);
             return new SuccessResult(Messages.BrandUpdated);
         }
     }

@@ -12,16 +12,16 @@ namespace Business.Concrete
     public class ColorManager : IColorService
     {
 
-        IColorDal _ıColorDal;
+        IColorDal _iColorDal;
 
-        public ColorManager(IColorDal ıColorDal)
+        public ColorManager(IColorDal iColorDal)
         {
-            _ıColorDal = ıColorDal;
+            _iColorDal = iColorDal;
         }
 
         public IResult Add(Color color)
         {
-            _ıColorDal.Add(color);
+            _iColorDal.Add(color);
             return new SuccessResult(Messages.ColorAdded);
         }
 
@@ -29,23 +29,23 @@ namespace Business.Concrete
 
         public IResult Delete(Color color)
         {
-            _ıColorDal.Delete(color);
+            _iColorDal.Delete(color);
             return new SuccessResult(Messages.ColorDeleted);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_ıColorDal.GetAll());
+            return new SuccessDataResult<List<Color>>(_iColorDal.GetAll());
         }
 
         public IDataResult<Color> GetById(int colorId)
         {
-            return new SuccessDataResult<Color>(_ıColorDal.Get(p => p.ColorId == colorId));
+            return new SuccessDataResult<Color>(_iColorDal.Get(p => p.ColorId == colorId));
         }
 
         public IResult Update(Color color)
         {
-            _ıColorDal.Update(color);
+            _iColorDal.Update(color);
             return new SuccessResult(Messages.CarUpdated);
         }
 

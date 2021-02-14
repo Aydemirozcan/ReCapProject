@@ -11,38 +11,38 @@ namespace Business.Concrete
 {
     public class CustomerManager : ICustomerService
     {
-        ICustomerDal _ıCustomerDal;
+        ICustomerDal _iCustomerDal;
 
-        public CustomerManager(ICustomerDal ıCustomerDal)
+        public CustomerManager(ICustomerDal iCustomerDal)
         {
-            _ıCustomerDal = ıCustomerDal;
+            _iCustomerDal = iCustomerDal;
         }
 
         public IResult Add(Customer customer)
         {
-            _ıCustomerDal.Add(customer);
+            _iCustomerDal.Add(customer);
             return new SuccessResult(Messages.NewCustomerAdded);
         }
 
         public IResult Delete(Customer customer)
         {
-            _ıCustomerDal.Delete(customer);
+            _iCustomerDal.Delete(customer);
             return new SuccessResult(Messages.CustomerDeleted);
         }
 
         public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customer>>(_ıCustomerDal.GetAll());
+            return new SuccessDataResult<List<Customer>>(_iCustomerDal.GetAll());
         }
 
         public IDataResult<Customer> GetById(int customerId)
         {
-            return new SuccessDataResult<Customer>(_ıCustomerDal.Get(c => c.CustomerId == customerId));
+            return new SuccessDataResult<Customer>(_iCustomerDal.Get(c => c.CustomerId == customerId));
         }
 
         public IResult Update(Customer customer)
         {
-            _ıCustomerDal.Update(customer);
+            _iCustomerDal.Update(customer);
             return new SuccessResult(Messages.CustomerUpdated);
         }
     }

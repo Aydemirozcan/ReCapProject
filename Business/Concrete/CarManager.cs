@@ -13,11 +13,11 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
 
-        ICarDal _rentACarDal;                 //Consturactor Injection
+        ICarDal _irentACarDal;                 //Consturactor Injection
 
-        public CarManager(ICarDal rentACarDal)
+        public CarManager(ICarDal irentACarDal)
         {
-            _rentACarDal = rentACarDal;
+            _irentACarDal = irentACarDal;
         }
 
         public IResult Add(Car car)
@@ -29,7 +29,7 @@ namespace Business.Concrete
 
             else if (car.Description.Length >=2 && car.DailyPrice > 8000)
             {
-                _rentACarDal.Add(car);
+                _irentACarDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
             }
             else
@@ -50,8 +50,8 @@ namespace Business.Concrete
             else if (car.Description.Length >= 2 && car.DailyPrice > 8000)
             {
                 car.Description = car.Description + "!!";
-                _rentACarDal.Add(car);
-                return new SuccessDataResult<Car>(_rentACarDal.Get(c=>c.Id==car.Id),Messages.CarAdded);
+                _irentACarDal.Add(car);
+                return new SuccessDataResult<Car>(_irentACarDal.Get(c=>c.Id==car.Id),Messages.CarAdded);
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Business.Concrete
 
         public IResult Delete(Car car)
         {
-            _rentACarDal.Delete(car);
+            _irentACarDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
 
@@ -73,22 +73,22 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
-            return new SuccessDataResult<List<Car>>(_rentACarDal.GetAll(),Messages.CarsListed);
+            return new SuccessDataResult<List<Car>>(_irentACarDal.GetAll(),Messages.CarsListed);
         }
 
         public IDataResult<Car> GetById(int carId)
         {
-            return new SuccessDataResult<Car>(_rentACarDal.Get(p => p.Id == carId));
+            return new SuccessDataResult<Car>(_irentACarDal.Get(p => p.Id == carId));
         }
 
         public IDataResult<List<CarDetailsDto>> GetRentACarDetails()
         {
-           return new SuccessDataResult<List<CarDetailsDto>>(_rentACarDal.GetCarDetails());
+           return new SuccessDataResult<List<CarDetailsDto>>(_irentACarDal.GetCarDetails());
         }
 
         public IResult Update(Car car)
         {
-            _rentACarDal.Update(car);
+            _irentACarDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
     }
