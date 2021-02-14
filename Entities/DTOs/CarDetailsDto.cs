@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Entities.DTOs
 {
-    public class RentACarDetails:IDTOs
+    public class CarDetailsDto:IDTOs
     {
         public int Id { get; set; }
         public string BrandName { get; set; }
         public string ColorName { get; set; }
-        public int DailyPrice { get; set; }
+        public decimal DailyPrice { get; set; }
 
     }
 

@@ -11,9 +11,9 @@ namespace Core.Utilities.Results
             Message = message;
         }
 
-        public Result (bool succes)
+        public Result (bool success)
         {
-            Success = Success;
+            Success = success;
         }
 
         public bool Success { get; }

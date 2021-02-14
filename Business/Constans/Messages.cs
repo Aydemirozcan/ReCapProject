@@ -18,5 +18,16 @@ namespace Business.Constans
         public static string ColorUpdated = "The Color Updated";
         public static string MaintenanceTime = "Now is Maintenance Time";
         public static string CarsListed = "Cars Listed";
+        public static string NewCustomerAdded = "New Customer Added";
+        public static string CustomerDeleted = "Customer Deleted";
+        public static string CustomerUpdated = "Customer Updated";
+        public static string TheCarRented = "The Car Rented";
+        public static string TheRentalDataDeleted = "The Rental Data Deleted";
+        public static string TheCarUpdated = " The Car Updated";
+        public static string NewUserAdded = " New User Added";
+        public static string TheUserDeleted = "The User Deleted";
+        public static string TheUserUpdated = " The User Updated";
+        public static string RentalAddedError = "Rental didn't Add";
+        public static string RentalAdded = "Rental Added";
     }
 }

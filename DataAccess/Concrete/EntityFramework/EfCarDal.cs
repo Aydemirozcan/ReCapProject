@@ -11,18 +11,18 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car, MyDataBaseContext>, IRentACarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, MyDataBaseContext>, ICarDal
     {
-        public List<RentACarDetails> GetRentACarDetails()
+        public List<CarDetailsDto> GetCarDetails()
         {
-            using (MyDataBaseContext myDataBaseContext=new MyDataBaseContext())
+            using (MyDataBaseContext myDataBaseContext = new MyDataBaseContext())
             {
                 var result = from c in myDataBaseContext.Cars
                              join b in myDataBaseContext.Brands
                              on c.BrandId equals b.BrandId
                              join cl in myDataBaseContext.Colors
                              on c.ColorId equals cl.ColorId
-                             select new RentACarDetails
+                             select new CarDetailsDto
 
                              {
                                  Id = c.Id,
@@ -38,5 +38,7 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
+
+        
     }
 }

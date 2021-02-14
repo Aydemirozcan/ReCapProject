@@ -13,9 +13,9 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
 
-        IRentACarDal _rentACarDal;                 //Consturactor Injection
+        ICarDal _rentACarDal;                 //Consturactor Injection
 
-        public CarManager(IRentACarDal rentACarDal)
+        public CarManager(ICarDal rentACarDal)
         {
             _rentACarDal = rentACarDal;
         }
@@ -27,11 +27,38 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarDescriptionInvalid);
             }
 
-            else if (car.Description.Length >2 && car.DailyPrice > 8000)
+            else if (car.Description.Length >=2 && car.DailyPrice > 8000)
             {
                 _rentACarDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
             }
-            return new SuccessResult(Messages.CarAdded);
+            else
+            {
+                return new ErrorResult(Messages.CarDescriptionInvalid);
+                
+            }
+           
+        }
+
+        public IDataResult<Car> AddAndReturnData(Car car)
+        {
+            if (car.Description.Length < 2)
+            {
+                return new ErrorDataResult<Car>(car ,Messages.CarDescriptionInvalid);
+            }
+
+            else if (car.Description.Length >= 2 && car.DailyPrice > 8000)
+            {
+                car.Description = car.Description + "!!";
+                _rentACarDal.Add(car);
+                return new SuccessDataResult<Car>(_rentACarDal.Get(c=>c.Id==car.Id),Messages.CarAdded);
+            }
+            else
+            {
+                return new ErrorDataResult<Car>(Messages.CarDescriptionInvalid);
+
+            }
+
         }
 
         public IResult Delete(Car car)
@@ -54,9 +81,9 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_rentACarDal.Get(p => p.Id == carId));
         }
 
-        public IDataResult<List<RentACarDetails>> GetRentACarDetails()
+        public IDataResult<List<CarDetailsDto>> GetRentACarDetails()
         {
-           return new SuccessDataResult<List<RentACarDetails>>(_rentACarDal.GetRentACarDetails());
+           return new SuccessDataResult<List<CarDetailsDto>>(_rentACarDal.GetCarDetails());
         }
 
         public IResult Update(Car car)

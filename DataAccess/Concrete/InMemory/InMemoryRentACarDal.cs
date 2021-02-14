@@ -9,7 +9,7 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.InMemory
 {
-    public class InMemoryRentACarDal : IRentACarDal
+    public class InMemoryRentACarDal : ICarDal
     {
         List<Car> _cars;
 
@@ -51,12 +51,12 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public List<Car> GetById(string categoryId)
+        public List<Car> GetById(int categoryId)
         {
             return _cars.Where(c => c.CategoryId == categoryId).ToList();
         }
 
-        public List<RentACarDetails> GetRentACarDetails()
+        public List<CarDetailsDto> GetCarDetails()
         {
             throw new NotImplementedException();
         }

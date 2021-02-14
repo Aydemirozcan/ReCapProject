@@ -3,14 +3,13 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentACarDal:IEntityrepository<Car>
+    public interface IRentalDal: IEntityrepository<Rental>
     {
-        List<RentACarDetails> GetRentACarDetails();
-
-
+        List<RentalDetailsDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null);
     }
 }
