@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (MyDataBaseContext myDataBaseContext = new MyDataBaseContext())
             {
-                var result = from r in myDataBaseContext.Rentals
+                var result = from r in myDataBaseContext.Rentals.Where(filter)
                              join b in myDataBaseContext.Customers
                              on r.CustomerId equals b.CustomerId
                              join c in myDataBaseContext.Cars

@@ -29,5 +29,7 @@ namespace Business.Constans
         public static string TheUserUpdated = " The User Updated";
         public static string RentalAddedError = "Rental didn't Add";
         public static string RentalAdded = "Rental Added";
+        public static string RentalDidntReturn = "Rental Didn't Return";
+        public static string RentalReturned = "Rental Returned";
     }
 }

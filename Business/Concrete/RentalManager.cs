@@ -6,6 +6,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -34,6 +35,24 @@ namespace Business.Concrete
             }
 
             _iRentalDal.Add(rental);
+            return new SuccessResult(Messages.RentalAdded);
+
+        }
+
+
+
+
+
+       
+
+
+        public IResult CheckReturnRental(int Id)
+        {
+            var result = _iRentalDal.GetRentalDetails(p => p.CarId == Id && p.ReturnDate == null);
+            if (result.Count > 0)
+            {
+                return new ErrorResult(Messages.RentalAddedError);
+            }
             return new SuccessResult(Messages.RentalAdded);
 
         }
@@ -76,6 +95,5 @@ namespace Business.Concrete
             return new SuccessResult(Messages.TheCarUpdated);
         }
 
-        
     }
 }
