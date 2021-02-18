@@ -57,14 +57,14 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("checkreturnrental")]
-        public IActionResult CheckReturnRental(int id)
+        public IActionResult CheckReturnRental(int carId)
         {
-            var result = _rentalService.CheckReturnRental(id);
+            var result = _rentalService.CheckReturnRental(carId);
             if (result.Success)
             {
-                return Ok(Messages.RentalReturned);
+                return Ok(Messages.CarReturned);
             }
-            return BadRequest(Messages.RentalDidntReturn);
+            return BadRequest(Messages.CarDidntReturn);
         }
 
         [HttpPost("add")]

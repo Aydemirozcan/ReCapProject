@@ -51,7 +51,7 @@ namespace Business.Concrete
             {
                 car.Description = car.Description + "!!";
                 _irentACarDal.Add(car);
-                return new SuccessDataResult<Car>(_irentACarDal.Get(c=>c.Id==car.Id),Messages.CarAdded);
+                return new SuccessDataResult<Car>(_irentACarDal.Get(c=>c.CarId==car.CarId),Messages.CarAdded);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour==21)
+            if (DateTime.Now.Hour==1)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
@@ -78,7 +78,7 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int carId)
         {
-            return new SuccessDataResult<Car>(_irentACarDal.Get(p => p.Id == carId));
+            return new SuccessDataResult<Car>(_irentACarDal.Get(p => p.CarId == carId));
         }
 
         public IDataResult<List<CarDetailsDto>> GetRentACarDetails()

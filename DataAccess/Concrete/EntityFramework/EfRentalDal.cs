@@ -21,10 +21,10 @@ namespace DataAccess.Concrete.EntityFramework
                              join b in myDataBaseContext.Customers
                              on r.CustomerId equals b.CustomerId
                              join c in myDataBaseContext.Cars
-                             on r.CarId equals c.Id
+                             on r.CarId equals c.CarId
                              select new RentalDetailsDto
                              {
-                                 CarId=c.Id,
+                                 CarId=c.CarId,
                                  CustomerName = b.CustomerName,
                                  ReturnDate = r.ReturnDate,
                                  RentDate = r.RentDate

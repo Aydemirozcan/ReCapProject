@@ -46,9 +46,9 @@ namespace Business.Concrete
        
 
 
-        public IResult CheckReturnRental(int Id)
+        public IResult CheckReturnRental(int carId)
         {
-            var result = _iRentalDal.GetRentalDetails(p => p.CarId == Id && p.ReturnDate == null);
+            var result = _iRentalDal.GetRentalDetails(p => p.CarId == carId && p.ReturnDate == null);
             if (result.Count > 0)
             {
                 return new ErrorResult(Messages.RentalAddedError);
@@ -59,9 +59,9 @@ namespace Business.Concrete
 
 
 
-        public IDataResult<List<RentalDetailsDto>> GetRentalDetails(int id)
+        public IDataResult<List<RentalDetailsDto>> GetRentalDetails(int carId)
         {
-            return new SuccessDataResult<List<RentalDetailsDto>>(_iRentalDal.GetRentalDetails(r => r.Id == id));
+            return new SuccessDataResult<List<RentalDetailsDto>>(_iRentalDal.GetRentalDetails(r => r.CarId == carId));
         }
 
 
@@ -82,9 +82,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_iRentalDal.GetAll());
         }
 
-        public IDataResult<Rental> GetById(int ıd)
+        public IDataResult<Rental> GetById(int id)
         {
-            return new SuccessDataResult<Rental>(_iRentalDal.Get(r => r.Id == ıd));
+            return new SuccessDataResult<Rental>(_iRentalDal.Get(r => r.Id == id));
         }
 
         

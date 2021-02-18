@@ -49,8 +49,8 @@ namespace ConsoleUI
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
             Rental rental = new Rental();
-            rental.CarId = 4;
-            rental.CustomerId = 3;
+            rental.CarId = 1;
+            rental.CustomerId = 1;
             var result5 = rentalManager.Add(rental);
             Console.WriteLine(result5.Message);
 
@@ -78,7 +78,7 @@ namespace ConsoleUI
             {
                 foreach (var car in result.Data)
                 {
-                    Console.WriteLine(car.Id + "/" + car.ColorName + "/" + car.BrandName + "/" + car.DailyPrice);
+                    Console.WriteLine(car.CarId + "/" + car.ColorName + "/" + car.BrandName + "/" + car.DailyPrice);
                 }
             }
             else
