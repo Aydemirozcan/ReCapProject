@@ -1,9 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,24 +23,30 @@ namespace Business.Concrete
             _irentACarDal = irentACarDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.Description.Length < 2)
-            {
-                return new ErrorResult(Messages.CarDescriptionInvalid);
-            }
+            
 
-            else if (car.Description.Length >=2 && car.DailyPrice > 8000)
-            {
-                _irentACarDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);
-            }
-            else
-            {
-                return new ErrorResult(Messages.CarDescriptionInvalid);
-                
-            }
-           
+            //if (car.Description.Length < 2)
+            //{
+            //    return new ErrorResult(Messages.CarDescriptionInvalid);
+            //}
+
+            //else if (car.Description.Length >= 2 && car.DailyPrice > 8000)
+            //{
+            //    _irentACarDal.Add(car);
+            //    return new SuccessResult(Messages.CarAdded);
+            //}
+            //else
+            //{
+            //    return new ErrorResult(Messages.CarDescriptionInvalid);
+
+            //}
+
+            _irentACarDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+
         }
 
         public IDataResult<Car> AddAndReturnData(Car car)
