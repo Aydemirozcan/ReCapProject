@@ -49,7 +49,7 @@ namespace ConsoleUI
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
             Rental rental = new Rental();
-            rental.CarId = 19;
+            rental.CarId = 4;
             rental.CustomerId = 1;
             var result5 = rentalManager.Add(rental);
             Console.WriteLine(result5.Message);

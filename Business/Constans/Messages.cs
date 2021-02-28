@@ -31,5 +31,14 @@ namespace Business.Constans
         public static string RentalAdded = "Rental Added";
         public static string CarDidntReturn = "Car Didn't Return";
         public static string CarReturned = "Car Returned";
+        public static string ImageAded="The Image Added";
+        public static string ImageDeleted="The Image Deleted";
+        public static string ImagesListed="Images Listed";
+        public static string ImageUpdated="The Image Updated";
+        public static string ImageLimitExceded= "One Car Must Have A maximum Of Five Photos";
+        public static string TheFileTypeInvalid="The File Type İs Invalid";
+        internal static string ImageDidntAdd="b";
+        internal static string ImageNotFound    ="fggrgtrgrh";
+        internal static string ImageDidntUpload="a";
     }
 }
