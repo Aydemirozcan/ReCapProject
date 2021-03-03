@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constans
@@ -37,8 +39,15 @@ namespace Business.Constans
         public static string ImageUpdated="The Image Updated";
         public static string ImageLimitExceded= "One Car Must Have A maximum Of Five Photos";
         public static string TheFileTypeInvalid="The File Type İs Invalid";
-        internal static string ImageDidntAdd="b";
-        internal static string ImageNotFound    ="fggrgtrgrh";
-        internal static string ImageDidntUpload="a";
+        internal static string ImageDidntAdd="Image Didn't Add";
+        internal static string ImageNotFound    ="Image NotFound";
+        internal static string ImageDidntUpload="Image Didn't Upload";
+        internal static string AuthorizationDenied= "You have't Authorization";
+        internal static string UserRegistered="User Registered";
+        internal static string UserNotFound="User Not Found";
+        internal static string PasswordError="Password Error";
+        internal static string SuccessfulLogin="Successful Login";
+        internal static string UserAlreadyExists="User Already Exists";
+        internal static string AccessTokenCreated="Access Token Created";
     }
 }
