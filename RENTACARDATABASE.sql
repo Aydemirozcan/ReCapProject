@@ -50,12 +50,13 @@ CREATE TABLE [dbo].[Rentals] (
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Rentals_Cars] FOREIGN KEY ([CarId]) REFERENCES [dbo].[Cars] ([CarId])
 );
-
 CREATE TABLE [dbo].[Users] (
-    [Id]        INT        NOT NULL,
-    [FirstName] NCHAR (10) NOT NULL,
-    [LastName]  NCHAR (10) NOT NULL,
-    [Email]     NCHAR (10) NULL,
-    [Password]  NCHAR (10) NULL,
+    [Id]           INT             IDENTITY (1, 1) NOT NULL,
+    [FirstName]    NCHAR (10)      NOT NULL,
+    [LastName]     NCHAR (10)      NOT NULL,
+    [Email]        VARCHAR (50)    NOT NULL,
+    [PasswordHash] VARBINARY (500) NOT NULL,
+    [PasswordSalt] VARBINARY (500) NOT NULL,
+    [Status]       BIT             NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
