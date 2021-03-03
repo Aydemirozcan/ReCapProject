@@ -53,7 +53,7 @@ namespace WebAPI
 
             //services.AddSingleton<IUserService, UserManager>();
             //services.AddSingleton<IUserDal, EfUserDal>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();   //Asp.net webAPI ' a bu sistemde autotantikasyon olarak JWTBearerToken kullanýlacak diye belirttiðimiz yerdir.
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -71,6 +71,7 @@ namespace WebAPI
                     };
                 });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             ServiceTool.Create(services);
 
 
@@ -87,6 +88,7 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

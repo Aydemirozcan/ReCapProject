@@ -23,8 +23,8 @@ namespace Business.Concrete
         {
             _irentACarDal = irentACarDal;
         }
-        [SecuredOperation("Car.Add")]
-        [ValidationAspect(typeof(CarValidator))]
+        [SecuredOperation("Admin")]
+        //[ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             
