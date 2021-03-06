@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -23,8 +24,10 @@ namespace Business.Concrete
         {
             _irentACarDal = irentACarDal;
         }
+        
         [SecuredOperation("Admin")]
-        //[ValidationAspect(typeof(CarValidator))]
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("IproductService.Get")]
         public IResult Add(Car car)
         {
             
@@ -76,7 +79,7 @@ namespace Business.Concrete
             _irentACarDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour==1)
@@ -85,7 +88,7 @@ namespace Business.Concrete
             }
             return new SuccessDataResult<List<Car>>(_irentACarDal.GetAll(),Messages.CarsListed);
         }
-
+        [CacheAspect]
         public IDataResult<Car> GetById(int carId)
         {
             return new SuccessDataResult<Car>(_irentACarDal.Get(p => p.CarId == carId));
@@ -95,7 +98,8 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<List<CarDetailsDto>>(_irentACarDal.GetCarDetails());
         }
-
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _irentACarDal.Update(car);
